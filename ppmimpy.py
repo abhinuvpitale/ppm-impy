@@ -2,7 +2,7 @@ import array
 import numpy as np
 
 class ppmimpy:
-	def __init__(self,form='P6',height=128,width=32,maxval=255):
+	def __init__(self,form='P6',height=32,width=128,maxval=255):
 		self.height = height
 		self.width = width
 		self.form = form
@@ -17,13 +17,16 @@ class ppmimpy:
 		return array.array('B',[r,g,b]*self.width*self.height)
 
 	def array_to_image(self,ndarray):
-		for x in range(self.height):
-			for y in range(self.width):
-				if ndarray[x][y] == 1:
-					index = 3*(y*self.width+x)
-					self.image[index] = 255
-					self.image[index+1] = 255	 
-					self.image[index+2] = 255
+		if np.shape(ndarray) == (self.height,self.width):
+			for x in range(self.height):
+				for y in range(self.width):
+					if ndarray[x][y] == 1:
+						index = 3*(x*self.width+y)
+						self.image[index] = 255
+						self.image[index+1] = 255
+						self.image[index+2] = 255
+		else:
+			print('Wrong Sized Array!!!')
 	def create_file(self,file_name):
 		if file_name[-4:-1] != 'ppm':
 			file_name = file_name+'.ppm'

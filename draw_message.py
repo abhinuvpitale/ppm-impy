@@ -6,7 +6,7 @@ import ppmimpy as ppy
 pygame.init()
 print('4:1 Screen Size \nClick to flip colours')
 screen = pygame.display.set_mode((128*4,32*4))
-arr = np.zeros((128,32))
+arr = np.zeros((32,128))
 black = (0,0,0)
 white= (255,255,255)
 ppmfile = ppy.ppmimpy()
@@ -22,10 +22,9 @@ while 1:
 			x,y = pygame.mouse.get_pos()
 			x = int(x/4)
 			y = int(y/4)
-			old = arr[x][y]
-			print old
-			arr[x][y] = 1 if old == 0 else 0
-			pygame.draw.rect(screen,white if arr[x][y]==1 else black,(4*x,4*y,4,4),0)
+			old = arr[y][x]
+			arr[y][x] = 1 if old == 0 else 0
+			pygame.draw.rect(screen,white if arr[y][x]==1 else black,(4*x,4*y,4,4),0)
  
 			print(x,y)
 			pygame.display.update()
