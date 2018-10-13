@@ -1,8 +1,6 @@
 import sys
 import numpy as np
-import ppmimpy as ppy
-
-sys.path.append("./")
+from src import ppmimpy as ppy
 
 test = ppy.ppmimpy()
 arr = np.zeros(shape=(32, 128))
