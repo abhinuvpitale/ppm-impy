@@ -1,10 +1,10 @@
 language: python
 python:
-  - "2.7"
+  - "3.6"
 cache: pip
 install:
   - pip install -r requirements.txt
   - python -m pip install flake8
 script:
-  - python tests/test_bw_image.py
+  - py.test
   - flake8 --statistics

@@ -1,4 +1,3 @@
-import sys
 import numpy as np
 from src import ppmimpy as ppy
 
