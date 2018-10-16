@@ -36,4 +36,12 @@ class ppmimpy:
             file_name = file_name+'.ppm'
         with open(file_name, 'wb') as f:
             f.write(bytearray(self.ppm_header, 'ascii'))
-            self.image.tofile(f)
+            self.image.tofile(f)i
+
+    def convert_to_ppm(self, file_name):
+	file_name_save = file_name
+	file_name = file_name.tolower()
+	if file_name.endswith(".jpeg") or file_name.endswith(".jpg"):
+		return self._convert_jpg(file_name)
+
+ 
