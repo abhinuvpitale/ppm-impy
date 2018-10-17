@@ -7,4 +7,4 @@ install:
   - python -m pip install flake8
 script:
   - py.test
-  - flake8 --statistics
+  - flake8 --statistics --exclude ./scripts/

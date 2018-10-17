@@ -1,5 +1,6 @@
 import array
 import numpy as np
+from PIL import Image
 
 
 class ppmimpy:
@@ -36,12 +37,18 @@ class ppmimpy:
             file_name = file_name+'.ppm'
         with open(file_name, 'wb') as f:
             f.write(bytearray(self.ppm_header, 'ascii'))
-            self.image.tofile(f)i
+            self.image.tofile(f)
 
     def convert_to_ppm(self, file_name):
-	file_name_save = file_name
-	file_name = file_name.tolower()
-	if file_name.endswith(".jpeg") or file_name.endswith(".jpg"):
-		return self._convert_jpg(file_name)
+        file_name_save = file_name
+        file_name = file_name.lower()
+        if file_name.endswith(".jpeg") or file_name.endswith(".jpg"):
+            arr = self._convert_jpg(file_name)
+        self.array_to_image(arr)
+        self.create_file(file_name_save[0:-5])
 
- 
+    def _convert_jpg(self, file_name):
+        img = Image.open(file_name)
+        img = img.convert("1")
+        img = img.resize((128, 32))
+        return np.asarray(img, dtype=np.int8)
